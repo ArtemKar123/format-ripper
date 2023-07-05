@@ -30,7 +30,10 @@ jobs:
         with:
           arguments: test
           build-root-directory: ./jvm
-      - uses: actions/upload-artifact@v3
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        if: always()
         with:
-          name: Test report
-          path: ./jvm/build/reports/tests/test/index.html
+          name: jvm-test-results-${{ matrix.os }}
+          path: ./jvm/build/test-results/test/*
+          if-no-files-found: error
