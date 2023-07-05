@@ -45,7 +45,12 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+    reports {
+        junitXml.required.set(false)
+        html.required.set(true)
+    }
 }
+
 
 java {
     if (isUnderTeamCity) {

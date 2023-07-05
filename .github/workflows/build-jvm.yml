@@ -30,10 +30,7 @@ jobs:
         with:
           arguments: test
           build-root-directory: ./jvm
-      - name: Upload test results
-        uses: actions/upload-artifact@v3
-        if: always()
+      - uses: actions/upload-artifact@v3
         with:
-          name: test-results-${{ matrix.os }}
-          path: ${{ github.workspace }}/**/JvmTestResults/*
-          if-no-files-found: error
+          name: Reports
+          path: build/reports
