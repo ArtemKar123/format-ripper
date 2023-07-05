@@ -33,4 +33,4 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: Test report
-          path: ./build/reports/tests/test/index.html
+          path: ./jvm/build/reports/tests/test/index.html
