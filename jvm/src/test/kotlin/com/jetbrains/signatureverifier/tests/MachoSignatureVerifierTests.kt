@@ -56,7 +56,7 @@ class MachoSignatureVerifierTests {
   }
 
   @ParameterizedTest
-  @Disabled
+//  @Disabled
   @MethodSource("VerifySignWithChainTestProvider")
   fun VerifySignWithChainTest(
     machOResourceName: String,
