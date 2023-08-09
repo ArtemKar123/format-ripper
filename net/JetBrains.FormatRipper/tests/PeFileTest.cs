@@ -56,6 +56,7 @@ namespace JetBrains.FormatRipper.Tests
       string expectedSecurityDataDirectoryRange,
       string expectedOrderedIncludeRanges)
     {
+      //
       var file = ResourceUtil.OpenRead(ResourceCategory.Pe, resourceName, stream =>
         {
           Assert.IsTrue(PeFile.Is(stream));
