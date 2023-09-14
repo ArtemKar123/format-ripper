@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.FormatRipper.Impl;
 
 namespace JetBrains.FormatRipper
 {
@@ -7,7 +8,7 @@ namespace JetBrains.FormatRipper
     public readonly long Position;
     public readonly long Size;
 
-    internal StreamRange(long position, long size)
+    public StreamRange(long position, long size)
     {
       if (position < 0)
         throw new ArgumentOutOfRangeException(nameof(position), position, null);
@@ -18,5 +19,11 @@ namespace JetBrains.FormatRipper
     }
 
     public override string ToString() => $"[{Position:X}:{Size:X}]";
+
+    public byte[] ToByteArray(bool isBe = false) =>
+      MemoryUtil.ArrayMerge(
+        MemoryUtil.ToByteArray(Position, isBe: isBe),
+        MemoryUtil.ToByteArray(Size, isBe: isBe)
+      );
   }
 }

@@ -24,9 +24,9 @@ jobs:
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: |
-            3.1.x
-            7.0.x
+           dotnet-version: |
+             3.1.x
+             7.0.x
       - name: Restore
         working-directory: ${{ github.workspace }}/net
         run: dotnet restore
