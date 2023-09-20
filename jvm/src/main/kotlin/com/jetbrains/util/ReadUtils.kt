@@ -1,6 +1,7 @@
 ﻿package com.jetbrains.util
 
 import java.nio.ByteBuffer
+import java.nio.ByteOrder
 import java.nio.channels.SeekableByteChannel
 
 fun SeekableByteChannel.Rewind(): SeekableByteChannel {
@@ -14,6 +15,10 @@ fun SeekableByteChannel.Skip(len: Long) {
 
 fun SeekableByteChannel.Jump(len: UInt) {
   this.Seek(len.toLong(), SeekOrigin.Begin)
+}
+
+fun SeekableByteChannel.Jump(len: Long) {
+  this.Seek(len, SeekOrigin.Begin)
 }
 
 fun SeekableByteChannel.Seek(position: Long, origin: SeekOrigin) {
@@ -67,13 +72,20 @@ fun BinaryReader.ReadUInt32Le(isBe: Boolean): UInt {
   return if (isBe) SwapBytes(value) else value
 }
 
-fun BinaryReader.ReadUInt32Be(): UInt {
-  return SwapBytes(this.ReadUInt32())
+fun BinaryReader.ReadUInt32Be(): UInt = when (ByteOrder.nativeOrder()) {
+  ByteOrder.BIG_ENDIAN -> this.ReadUInt32()
+  else -> SwapBytes(this.ReadUInt32())
 }
+
 
 fun BinaryReader.ReadUInt64Le(isBe: Boolean): ULong {
   val value = this.ReadUInt64()
   return if (isBe) SwapBytes(value) else value
+}
+
+fun BinaryReader.ReadUInt64Be(): ULong = when (ByteOrder.nativeOrder()) {
+  ByteOrder.BIG_ENDIAN -> this.ReadUInt64()
+  else -> SwapBytes(this.ReadUInt64())
 }
 
 private fun SwapBytes(v: UShort): UShort = (((v.toInt() and 0xFF) shl 8) or ((v.toInt() ushr 8) and 0xFF)).toUShort()
