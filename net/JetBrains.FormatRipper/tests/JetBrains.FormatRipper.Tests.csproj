@@ -7,6 +7,7 @@
     <AssemblyOriginatorKeyFile>../../key.snk</AssemblyOriginatorKeyFile>
     <IsPackable>false</IsPackable>
     <LangVersion>10</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NUnit" Version="3.13.3" />
@@ -22,5 +23,6 @@
     <EmbeddedResource Include="..\..\..\data\msi\*" LinkBase="Resources\Msi" />
     <EmbeddedResource Include="..\..\..\data\pe\*" LinkBase="Resources\Pe" />
     <EmbeddedResource Include="..\..\..\data\sh\*" LinkBase="Resources\Sh" />
+    <EmbeddedResource Include="..\..\..\data\dmg\*" LinkBase="Resources\Dmg" />
   </ItemGroup>
 </Project>
